@@ -1,0 +1,27 @@
+{
+	"name": "@labor-digital/bits-docs",
+	"version": "1.0.0",
+	"description": "Documentation",
+	"scripts": {
+		"demo:clean": "rimraf ./.vuepress/public/demo",
+		"demo:make:examples": "cd ../demo && npm i && npm run build",
+		"demo:copy": "copyfiles \"../demo/dist/**\" ./.vuepress/public/demo && copyfiles \"../demo/examples/**\" ./.vuepress/public/demo",
+		"build:demo": "npm run demo:clean && npm run demo:make:examples && npm run demo:copy",
+		"build:vuepress": "vuepress build --debug . ",
+		"build": "npm run build:demo && npm run build:vuepress",
+		"dev": "npm run demo:copy && vuepress dev ."
+	},
+	"author": "",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"copyfiles": "^2.4.1",
+		"rimraf": "^3.0.2",
+		"vuepress": "^1.8.2"
+	},
+	"devDependencies": {
+		"typescript": "^4.3.5",
+		"typedoc": "^0.21.5",
+		"typedoc-plugin-markdown": "^3.10.4",
+		"vuepress-plugin-typedoc": "^0.8.2"
+	}
+}

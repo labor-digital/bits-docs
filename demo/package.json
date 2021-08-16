@@ -1,0 +1,35 @@
+{
+	"name": "@labor-digital/bits-demo",
+	"version": "1.0.0",
+	"description": "Some examples for how to use the bits script",
+	"main": "index.js",
+	"scripts": {
+		"link": "npm link @labor-digital/bits @labor-digital/bits-translator @labor-digital/bits-lit-html",
+		"build": "rimraf ./dist && npx webpack",
+		"watch": "rimraf ./dist && npx webpack --config ./webpack.watch.js",
+		"dev": "webpack serve --config ./webpack.dev.js"
+	},
+	"author": "",
+	"license": "Apache-2.0",
+	"dependencies": {
+		"@labor-digital/bits": "^2.1.0",
+		"@labor-digital/bits-translator": "^1.1.0",
+		"@labor-digital/bits-lit-html": "^1.1.0",
+		"@labor-digital/helferlein": "^4.2.0",
+		"@webcomponents/template": "^1.5.0",
+		"bootstrap": "^5.1.0"
+	},
+	"devDependencies": {
+		"@types/webpack-env": "^1.16.2",
+		"css-loader": "^6.2.0",
+		"core-js": "^3.16.1",
+		"rimraf": "^3.0.2",
+		"style-loader": "^3.2.1",
+		"ts-loader": "^9.2.5",
+		"typescript": "^4.3.5",
+		"webpack": "^5.50.0",
+		"webpack-cli": "^4.8.0",
+		"webpack-dev-server": "^3.11.2",
+		"webpack-merge": "^5.8.0"
+	}
+}

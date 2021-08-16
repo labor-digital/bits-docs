@@ -1,0 +1,12 @@
+node_modules
+dist
+docs/.vuepress/public/demo/examples
+docs/api
+tmp
+
+# IDEA Code Style
+.idea/*
+!.idea/copyright/
+!.idea/copyright/*
+!.idea/codeStyles/
+!.idea/codeStyles/*
