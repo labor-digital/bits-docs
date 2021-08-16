@@ -9,8 +9,8 @@
 		"build:demo": "npm run demo:clean && npm run demo:make:examples && npm run demo:copy",
 		"build:deps": "cd .. && npm i",
 		"build:vuepress": "vuepress build --debug . ",
-		"build": "npm run build:demo && npm run build:vuepress",
-		"dev": "npm run demo:copy && npm run build:deps && vuepress dev ."
+		"build": "npm run build:demo && npm run build:deps && npm run build:vuepress",
+		"dev": "npm run demo:copy && vuepress dev ."
 	},
 	"author": "",
 	"license": "Apache-2.0",
