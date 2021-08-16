@@ -28,7 +28,7 @@ export class TemplatesHandlebars extends AbstractBit
     onRemoveClick(e: MouseEvent)
     {
         const index = this.$attr(e.target as HTMLElement, 'data-index')![0];
-        this.elements.splice(parseInt(index), 1);
+        this.elements.splice(parseInt(index + ''), 1);
     }
     
     @Listener('click', '@add')
