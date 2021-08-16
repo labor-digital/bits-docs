@@ -173,7 +173,7 @@ use a mounted, auto-re-rendering template like this.
 
 :::
 
-<Example href="/demo/examples/advanced-templates-reactive.html" :height="250"/>
+<Example href="/demo/examples/advanced-templates-reactive.html" :height="150"/>
 
 ### Alternative template engines
 
@@ -203,7 +203,7 @@ new BitApp({
 
 That's all, you now can render templates using the full mustache template engine.
 
-<Example href="/demo/examples/advanced-templates-handlebars.html" :height="450"/>
+<Example href="/demo/examples/advanced-templates-handlebars.html" :height="250"/>
 
 ::: details Example Source 
 
