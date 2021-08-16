@@ -18,7 +18,7 @@ To reduce the size and dependency count you can now install it as a [separate pl
 ### Static rendering
 
 Where `$html` is your swiss army knife of generating HTML, `$tpl` is basically the little toothpick on the side. 
-By default, it loads the content of a "template" tag, replaces some markers ```{{value}}``` (with html escaping) or ```{{{value}}}``` (without html escaping).
+By default, it loads the content of a "template" tag, replaces some markers <span v-pre>```{{value}}```</span> (with html escaping) or <span v-pre>```{{{value}}}```</span> (without html escaping).
 To be usable, your template MUST have a data-ref="$ref" attribute. 
 
 The method allows you to provide a list of values that can be injected
@@ -34,7 +34,7 @@ those new elements must be bound to their respective instances
 
 ::: warning LEGACY
 
-While the old syntax using the `<span data-value="key"></span>` markers still works, it's highly recommended to use
+While the old syntax using the ```<span data-value="key"></span>``` markers still works, it's highly recommended to use
 the brace syntax instead. 
  
 :::

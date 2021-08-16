@@ -120,8 +120,7 @@ module.exports = {
                         'advanced/AsyncBits',
                         'advanced/Mixins',
                         'advanced/HotReload',
-                        'advanced/CodeTemplate',
-                        'advanced/Translations'
+                        'advanced/CodeTemplate'
                     ]
                 },
                 {
