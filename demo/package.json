@@ -12,7 +12,7 @@
 	"author": "",
 	"license": "Apache-2.0",
 	"dependencies": {
-		"@labor-digital/bits": "^2.1.0",
+		"@labor-digital/bits": "^2.2.0",
 		"@labor-digital/bits-lit-html": "^1.1.0",
 		"@labor-digital/bits-translator": "^1.1.0",
 		"@labor-digital/helferlein": "^4.2.0",
