@@ -6,151 +6,23 @@ For those cases bits provides you with two major options of generating HTML/mani
 
 ## $html()
 
-::: danger LEGACY
+::: tip Lit-Html integration
 
-Until the next major release the $html, $styleMap and $classMap methods are provided as a core feature,
-after that you need to install it as a [separate plugin](../plugins/LitHtml.md)
-
-:::
-
-The `$html()` method is available in any bit and acts as a wrapper around [lit-html](https://lit-html.polymer-project.org/), which allows dynamic re-rendering when used, reactive data was modified.
-lit-html provides data- and listener binding, as well as conditional- and list rendering.
-
-### Basic usage
-When you work with `$html()` you have two options:
-1. If you provide a "mount" inside your DOM tree, the rendered HTML will be injected into it automatically. 
-2. If no "mount" was defined, the rendered HTML will replace the HTML inside your `b-mount` node instead.
-
-So, let's start with a basic HTML markup:
-
-```html
-<b-mount type="html"></b-mount>
-```
-
-And a matching bit definition:
-```typescript
-import {AbstractBit, html} from '@labor-digital/bits';
-
-export class Html extends AbstractBit
-{
-    public mounted()
-    {
-        this.$html(() => html`<span>I'm a <strong>bold</strong> claim!</span>`);
-    }
-}
-```
-
-This will add the `<span>I'm a <strong>bold</strong> claim!</span>` as content of the `b-mount` tag, because no mount element was specified.
-
-<Example href="/demo/examples/plugin-lit-html.html" :height="90"/>
-
-Please note two things: Firstly, the HTML string is wrapped in es6 template literals, that gets preceded by `html`, which is a function provided by the [lit-element template syntax](https://lit-html.polymer-project.org/guide/template-reference). **This is important! It won't work without it!**
-Secondly, note how we don't provide our template as a string to `$html` but instead, wrapped in a fat arrow function. This is needed so that the template can get re-rendered automatically when your 
-data changed.
-
-::: tip Providing a mount point
-
-A mount point can be any element in your bit, (theoretically even outside your bit, if you provide a DOM node manually).
-
-```html
-<b-mount type="html">
-    <h1>Fancy Headline</h1>
-    <p>Some fancy text <span data-ref="htmlMount"></span></p>
-</b-mount>
-```
-
-To specify a mount point, simply set it as first argument for "html":
-```typescript
-this.$html('@htmlMount', () => html`I'm a <strong>bold</strong> claim!`);
-```
+In previous releases, $html() was part of the bits library core.
+To reduce the size and dependency count you can now install it as a [separate plugin](../plugins/LitHtml.md)
 
 :::
 
-### Data and listener binding
+## $tpl() 
 
-Before you go on, I would urge you to read (or at least skim over) [the lit-html template reference](https://lit-html.polymer-project.org/guide/template-reference),
-to get a basic understanding on how it works. Bits only adds the reactivity-glue-layer on top of it, so everything I could tell you is already written there. 
-
-Talking about reactivity, here is how you bind data, and a simple click listener to the html generated using `$html`.
-While the html markup stays the same as in the example above, we modify the bit code to look like this:
-
-```typescript
-import {AbstractBit, Data, html} from '@labor-digital/bits';
-
-export class Html extends AbstractBit
-{
-    @Data()
-    protected count: number = 0;
-    
-    protected onClick(): void
-    {
-        this.count++;
-    }
-    
-    public mounted()
-    {
-        this.$html(() => html`
-            <div>
-                <button @click="${this.onClick}">Click me</button>
-                <strong>${this.count}</strong>
-            </div>`);
-    }
-}
-```
-
-This is basic lit-html markup and nothing to be afraid about. The `@click` attribute will add the "onClick" method, as a listener for the mouse "click" event.
-`this.count` is used to render a value in your template. Because `$html()` will automatically watch all properties used to generate the output,
-you can simply modify the count and expect your HTML to be updated for you:
-
-<Example href="/demo/examples/plugin-lit-html-binding.html" :height="100"/>
-
-### Two-way binding (data-model)
-Sadly, two-way data binding is not really intuitive in lit-html
-Therefore this library provides an additional glue layer in form of the "dataModel" directive, to ease the pain a bit. It is not perfect, but the best I can currently provide.
-
-To get it wo work, you define the input event to listen for (change/keyup for the most part),
-like any other event listener and then, tell the directive which property you want to bind it to.
-The binding will automatically update the input value in the same way data-model would.
-
-```typescript
-import {AbstractBit, Data, dataModel, html} from '@labor-digital/bits';
-
-export class HtmlModel extends AbstractBit
-{
-    @Data()
-    protected value: string = '';
-    
-    public mounted()
-    {
-        this.$html(() => html`
-            <div>
-                <input type="text" @keyup="${dataModel('value')}" placeholder="Type something"/>
-                <strong>${this.value}</strong>
-            </div>`
-        );
-    }
-}
-```
-
-<Example href="/demo/examples/plugin-lit-html-model.html" :height="170"/>
-
-### Extended example
-
-You can find an extended example using all the described functionality [in the gitHub repo](https://github.com/labor-digital/bits/blob/master/demo/src/Bits/HtmlBit.ts).
-Which will look somewhat like this:
-
-<Example href="/demo/examples/plugin-lit-html-advanced.html" :height="500"/>
-
-## $tpl()
+### Static rendering
 
 Where `$html` is your swiss army knife of generating HTML, `$tpl` is basically the little toothpick on the side. 
-It does no real template rendering itself, but loads the content of a "template" tag into a new sub-node which will be returned by it.
+By default, it loads the content of a "template" tag, replaces some markers ```{{value}}``` (with html escaping) or ```{{{value}}}``` (without html escaping).
+To be usable, your template MUST have a data-ref="$ref" attribute. 
 
-To be selectable, your template should have a data-ref="$ref" attribute. The method allows you to provide a one-dimensional list of values that should be injected
+The method allows you to provide a list of values that can be injected
 while the template is loaded. NOTE: This is not reactive, but merely an initial state.
-
-To define a marker add the data-value="key" attribute to any child of your template tag,
-and provide the data like {key: 'my-value'}. All data is injected as text and therefore auto-escaped.
 
 ::: tip
 
@@ -160,11 +32,11 @@ those new elements must be bound to their respective instances
 
 :::
 
-::: warning ADVICE
+::: warning LEGACY
 
-For advanced templating tasks I would strongly advise you, to use $html() instead, as it is reactive
-to any data changes and allows special features like event-listeners.
-
+While the old syntax using the `<span data-value="key"></span>` markers still works, it's highly recommended to use
+the brace syntax instead. 
+ 
 :::
 
 For an example, start with a HTML like this:
@@ -172,7 +44,7 @@ For an example, start with a HTML like this:
 <b-mount type="templates" class="card bg-light mt-3">
     <template data-ref="tpl">
         <li class="list-group-item">
-            I am <span data-value="id"></span>
+            I am {{id}}
             <button data-ref="remove">Remove</button>
         </li>
     </template>
@@ -238,5 +110,194 @@ nodes will also rebind their data.
 
 **Super-Pro tip:** You can listen for a "domChange" either using a event listener with this.$on('domChange'),
 or by using the domChanged() lifecycle hook
+
+:::
+
+### Reactive re-rendering
+
+Alternatively, you can use ```$tpl``` to automatically rerender your templates when the used data changed.
+The HTML for our example looks like this.
+
+```html
+<b-mount type="advanced/templates/reactive" class="card bg-light mt-3">
+    <div class="card-body">
+        <template data-ref="tpl">
+            The current number is: {{number}}<br>
+            <button class="btn btn-primary btn-sm" data-ref="button">Shuffle</button>
+        </template>
+        
+        <div data-ref="target"></div>
+    </div>
+</b-mount>
+```
+
+As you see, we again have a template which defines the part we want to render, and an empty div we will
+use as a target. The rendered template will automatically be injected into it.
+
+The main difference is, that we now use the "mounted" lifecycle hook to register our template through the `$tpl`
+method and also tell it the element on which we want it to be rendered:
+
+```typescript
+import {AbstractBit, Data, Listener} from '@labor-digital/bits';
+
+export class TemplatesReactive extends AbstractBit
+{
+    @Data()
+    protected number: number = 0;
+    
+    @Listener('click', '@button')
+    onRemoveClick(e: MouseEvent)
+    {
+        this.number = Math.random();
+    }
+    
+    public mounted()
+    {
+        // To reactively rerender the template when your data changes you can
+        // define a node which is used as target. The rendered html will automatically be injected into it
+        // and updated if required.
+        
+        // Please note that the second parameter is not handled as reference automatically,
+        // so you have to prefix it with @ if you want to select a ref.
+        
+        // Also keep in mind to wrap your data into a function when you use dynamic re rendering!
+        this.$tpl('tpl', '@target', () => ({number: this.number}));
+    }
+}
+```
+
+::: tip
+
+The click listener is automatically registered, you don't need to fiddle around with this.$domChanged() when you
+use a mounted, auto-re-rendering template like this.
+
+:::
+
+<Example href="/demo/examples/advanced-templates-reactive.html" :height="250"/>
+
+### Alternative template engines
+
+By default `$tpl` comes with a barebone implementation of a marker replacer. If you want/need an extended feature list
+you can use adapters to use different rendering engines. Bits is shipped using a built in adapter for the [handlebars](https://handlebarsjs.com/)
+renderer for [mustache](https://mustache.github.io/mustache.5.html) templates.
+
+To enable handlebars you need to first install it through npm in your project:
+
+```
+npm install handlebars
+```
+
+After that you can use the handlebars adapter in your app configuration:
+
+```typescript
+import {BitApp, tplAdapterHandlebars} from '@labor-digital/bits';
+
+new BitApp({
+    bits: { /* ... */},
+    tpl: {
+        // You can provide additional options for the handlebar compiler as options for the adapter function.
+        adapter: tplAdapterHandlebars()
+    }
+});
+```
+
+That's all, you now can render templates using the full mustache template engine.
+
+<Example href="/demo/examples/advanced-templates-handlebars.html" :height="450"/>
+
+::: details Example Source 
+
+```html
+<b-mount type="advanced/templates/handlebars" class="card bg-light mt-3">
+    <template data-ref="tpl">
+        {{#elements}}
+        <li>
+            I am {{id}} with index {{@index}}
+            <button data-ref="remove" data-index="{{@index}}">
+                Remove
+            </button>
+        </li>
+        {{/elements}}
+        {{^elements}}
+        <li >
+            Please add a new line
+        </li>
+        {{/elements}}
+    </template>
+    
+    <button class="btn btn-primary mb-3" data-ref="add">Add Line</button>
+    
+    <ul data-ref="elements" class="list-group"></ul>
+</b-mount>
+```
+
+```typescript
+import {AbstractBit, Data, Listener} from '@labor-digital/bits';
+import {getGuid} from '@labor-digital/helferlein';
+
+export class TemplatesHandlebars extends AbstractBit
+{
+    @Data()
+    protected elements: Array<{ id: string }> = [];
+    
+    @Listener('click', '@remove')
+    onRemoveClick(e: MouseEvent)
+    {
+        const index = this.$attr(e.target as HTMLElement, 'data-index')![0];
+        this.elements.splice(parseInt(index), 1);
+    }
+    
+    @Listener('click', '@add')
+    onAddChild()
+    {
+        this.elements.push({id: getGuid('item ')});
+    }
+    
+    public mounted()
+    {
+        // As you can see, the usage of handlebars does not change the syntax
+        // of your $tpl call. Only the underlying template engine differs,
+        // so in this case we can use list rendering that is not supported in the default implementation.
+        this.$tpl('tpl', '@elements', () => ({elements: this.elements}));
+    }
+}
+```
+:::
+
+### Alternative engine adapters
+
+If you have your own template engine, you can write your own adapter without thinking to much about it.
+The `tpl.adapter` option can be set to a function, which will receive three parameters.
+
+* template is the source code of the template tag that was requested
+* data is an object literal containing the view data that should be injected into the template
+* hash is a hash that is unique for each html `template` tag that is rendered. This allows you to efficiently compile 
+  templates and reuse them again later.
+  
+This is the example of the handlebars adapter which does exactly what you would expect. It compiles
+a template only if it is not yet known, and returns the resulting string back to the bits library.
+
+```typescript
+import type {PlainObject} from '@labor-digital/helferlein';
+import type {ITemplateRendererAdapter} from '@labor-digital/bits';
+import Handlebars from 'handlebars';
+
+export function tplAdapterHandlebars(options?: IHandlebarsCompileOptions): ITemplateRendererAdapter
+{
+    const compiled: Map<string, Function> = new Map();
+    
+    return function (template: string, data: PlainObject, hash: string): string {
+        if (!compiled.has(hash)) {
+            compiled.set(hash, Handlebars.compile(template, options ?? {}));
+        }
+        
+        return compiled.get(hash)!(data);
+    };
+}
+```
+
+::: danger
+
+The resulting HTML MUST be sanitized and ready to be injected into the DOM!
 
 :::

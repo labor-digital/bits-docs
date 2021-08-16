@@ -16,7 +16,7 @@
  * Last modified: 2021.03.07 at 20:39
  */
 
-import {AbstractBit, Listener} from '@labor-digital/bits';
+import {AbstractBit, Listener, tplAdapterStandalone} from '@labor-digital/bits';
 import {closest, getGuid} from '@labor-digital/helferlein';
 
 export class Templates extends AbstractBit
@@ -37,8 +37,13 @@ export class Templates extends AbstractBit
         // attribute.
         this.$find('@elements')!.appendChild(
             this.$tpl('tpl', {
-                id: getGuid('entry ')
-            })
+                    id: getGuid('entry ')
+                },
+                // Please ignore this, this example NEEDS to work with the standalone adapter,
+                // and not with the handlebars adapter that is configured as a default.
+                // @todo remove this in v3
+                tplAdapterStandalone
+            )
         );
         
         // Now, because we changed the dom in a way that can not be tracked by the system,
