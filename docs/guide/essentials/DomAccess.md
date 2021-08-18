@@ -132,7 +132,7 @@ To access elements on a global scale, just use your normal ```document.querySele
 To access nodes in nested `b-mounts` you can set the third parameter of `$find()` to true, which tells it that you don't care about mount
 point boundaries.
 
-So, if you call ```this.$find('.exampleClass', true, true)``` in your **example** bit with the HTML structure from above,
+So, if you call ```this.$find('.exampleClass', document.documentElement, true)``` in your **example** bit with the HTML structure from above,
 you will receive an array (yes, still an array) of all three divs inside its scope.
 
 ## Finding the $closest() parents
