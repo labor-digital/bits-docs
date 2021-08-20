@@ -187,6 +187,6 @@ new BitApp({
         // By default the $tpl() method is using a super simple {{marker}} replacer,
         // in our examples we use a full blown handlebars which has to be installed in your project
         // before it can be used!
-        adapter: tplAdapterHandlebars()
+        adapter: tplAdapterHandlebars(require('handlebars/dist/handlebars.js'))
     }
 });

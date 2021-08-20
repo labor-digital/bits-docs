@@ -196,7 +196,8 @@ new BitApp({
     bits: { /* ... */},
     tpl: {
         // You can provide additional options for the handlebar compiler as options for the adapter function.
-        adapter: tplAdapterHandlebars()
+        // You MUST provide the handlebars library as FIRST parameter in order toregister the compiler. 
+        adapter: tplAdapterHandlebars(require('handlebars/dist/handlebars.js'))
     }
 });
 ```
@@ -281,18 +282,23 @@ a template only if it is not yet known, and returns the resulting string back to
 import type {PlainObject} from '@labor-digital/helferlein';
 import type {ITemplateRendererAdapter} from '@labor-digital/bits';
 
-export function tplAdapterHandlebars(options?: IHandlebarsCompileOptions): ITemplateRendererAdapter
+export function tplAdapterHandlebars(
+        handlebars: PlainObject,
+        options?: any
+): ITemplateRendererAdapter
 {
-    const Handlebars = require('handlebars/dist/handlebars.js');
-    const compiled: Map<string, Function> = new Map();
-    
-    return function (template: string, data: PlainObject, hash: string): string {
-        if (!compiled.has(hash)) {
-            compiled.set(hash, Handlebars.compile(template, options ?? {}));
-        }
-        
-        return compiled.get(hash)!(data);
-    };
+  const compiled: Map<string, Function> = new Map();
+
+  if (!handlebars || !handlebars.compile) throw new Error('Invalid handlebars implementation given!');
+
+  return function (template: string, data: PlainObject, hash: string): string {
+    if (!compiled.has(hash)) {
+      compiled.set(hash, handlebars.compile(template, options ?? {}));
+    }
+
+    return compiled.get(hash)!(data);
+  };
+
 }
 ```
 
