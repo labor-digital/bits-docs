@@ -116,11 +116,11 @@ Let's look at a different HTML example:
 ```
 
 As you can see, we have three mounts stacked into each other. All three have a div with the "exampleClass" css class attached to them.
-When your **example** executes ```this.$find('.exampleClass', true)``` the result will always be an array,
-containing the div with id "1". "2" and "3" will automatically be removed by `$find`, because they are part of
-a nested `b-mount` tag. 
+When your **example** executes ```this.$findAll('.exampleClass')``` the result will always be an array,
+containing the div with id "1". "2" and "3" however will automatically be removed by `$findAll()` and `$find()`, 
+because they are part of a nested `b-mount` tag. 
 
-The same is true, if you execute ```this.$find('.exampleClass', true)``` inside **child1**, the result will
+The same is true, if you execute ```this.$findAll('.exampleClass')``` inside **child1**, the result will
 only contain the div with id "2". "1" is ignored, because only elements inside the mount will be looked up,
 "3", again, because it is part of a nested `b-mount` tag. 
 
@@ -129,11 +129,20 @@ only contain the div with id "2". "1" is ignored, because only elements inside t
 There might be cases where you don't want that behavior, so how do you cross the lines in both directions?
 
 To access elements on a global scale, just use your normal ```document.querySelectorAll()``` and you should be good to go.
-To access nodes in nested `b-mounts` you can set the third parameter of `$find()` to true, which tells it that you don't care about mount
-point boundaries.
+To access nodes in nested `b-mounts` you can set the second parameter of `$find()` and `$findAll()` to true, 
+which tells it that you don't care about mount point boundaries.
 
-So, if you call ```this.$find('.exampleClass', true, true)``` in your **example** bit with the HTML structure from above,
-you will receive an array (yes, still an array) of all three divs inside its scope.
+So, if you call ```this.$findAll('.exampleClass', true)``` in your **example** bit with the HTML structure from above,
+you will receive an array of all three divs inside its scope.
+
+::: tip
+
+If you are using a pivot node for your lookup in which `$find()` or `$findAll()` should perform their lookup,
+the third parameter has to be true in order to cross the mount point boundary.
+
+```this.$findAll('.exampleClass', this.$find('@pivot'), true)```
+
+:::
 
 ## Finding the $closest() parents
 
