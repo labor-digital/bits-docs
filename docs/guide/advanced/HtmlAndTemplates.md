@@ -280,10 +280,10 @@ a template only if it is not yet known, and returns the resulting string back to
 ```typescript
 import type {PlainObject} from '@labor-digital/helferlein';
 import type {ITemplateRendererAdapter} from '@labor-digital/bits';
-import Handlebars from 'handlebars';
 
 export function tplAdapterHandlebars(options?: IHandlebarsCompileOptions): ITemplateRendererAdapter
 {
+    const Handlebars = require('handlebars/dist/handlebars.js');
     const compiled: Map<string, Function> = new Map();
     
     return function (template: string, data: PlainObject, hash: string): string {
