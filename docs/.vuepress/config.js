@@ -105,6 +105,7 @@ module.exports = {
                         'essentials/DomAccess',
                         'essentials/ClassAndStyle',
                         'essentials/FormBinding',
+                        'essentials/ConditionalRendering',
                         'essentials/EventsAndProxy',
                         'essentials/DependencyInjection'
                     ]

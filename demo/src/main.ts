@@ -34,6 +34,7 @@ import {ReactivityWatcher} from './Bits/Advanced/ReactivityWatcher';
 import {Templates} from './Bits/Advanced/Templates';
 import {TemplatesHandlebars} from './Bits/Advanced/TemplatesHandlebars';
 import {TemplatesReactive} from './Bits/Advanced/TemplatesReactive';
+import {Conditional} from './Bits/Essentials/Conditional';
 import {FormBinding} from './Bits/Essentials/FormBinding';
 import {FormBindingBasic} from './Bits/Essentials/FormBindingBasic';
 import {LifecycleChild} from './Bits/Essentials/LifecycleChild';
@@ -121,7 +122,9 @@ new BitApp({
                 computed: ReactivityComputed
             },
             
-            styleAndClasses: StyleAndClasses
+            styleAndClasses: StyleAndClasses,
+            
+            conditional: Conditional
         },
         
         plugins: {
