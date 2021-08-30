@@ -18,7 +18,7 @@
 
 const isDevMode = (
                       process.argv[2] ?? null
-                  ) === 'dev' && false;
+                  ) === 'dev';
 
 function makePlugins()
 {
