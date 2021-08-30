@@ -118,6 +118,7 @@ module.exports = {
                         'advanced/AdvancedReactivity',
                         'advanced/BitInteraction',
                         'advanced/HtmlAndTemplates',
+                        'advanced/Directives',
                         'advanced/AsyncBits',
                         'advanced/Mixins',
                         'advanced/HotReload',

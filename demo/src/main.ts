@@ -22,6 +22,7 @@ import TranslatorPlugin from '@labor-digital/bits-translator';
 import {ucFirst} from '@labor-digital/helferlein';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import {Directives} from './Bits/Advanced/Directives';
 import {InteractionContextChild} from './Bits/Advanced/InteractionContextChild';
 import {InteractionContextParent} from './Bits/Advanced/InteractionContextParent';
 import {InteractionPropsChild} from './Bits/Advanced/InteractionPropsChild';
@@ -53,6 +54,7 @@ import {LitHtmlBinding} from './Bits/Plugins/LitHtml/LitHtmlBinding';
 import {LitHtmlModel} from './Bits/Plugins/LitHtml/LitHtmlModel';
 import {Translator} from './Bits/Plugins/Translator/Translator';
 import {Display} from './Bits/Util/Display';
+import {FocusDirective} from './Directive/FocusDirective';
 import {DemoPlugin} from './Plugin/DemoPlugin';
 import {ServiceA} from './Services/ServiceA';
 import {ServiceB} from './Services/ServiceB';
@@ -100,7 +102,9 @@ new BitApp({
                 '': Templates,
                 reactive: TemplatesReactive,
                 handlebars: TemplatesHandlebars
-            }
+            },
+            
+            directives: Directives
         },
         
         essentials: {
@@ -155,6 +159,10 @@ new BitApp({
         new TranslatorPlugin(),
         new LitHtmlPlugin()
     ],
+    
+    directives: {
+        focus: FocusDirective
+    },
     
     bitResolver: type => {
         if (type === 'async') {

@@ -301,3 +301,32 @@ Plugin bits are registered before those of the app, this allows you to
 override plugin bits on a per-app basis.
 
 :::
+
+## Providing directives
+
+Similar to providing whole bits, your plugin can bring its own [directives](../advanced/Directives.md) and register them in the application.
+
+```typescript
+import {BitApp, IBitNs, IBitPlugin} from '@labor-digital/bits';
+import {AlertDirective} from './AlertDirective';
+
+export class DemoPlugin implements IBitPlugin
+{
+    /* ... */
+    
+    public provideDirectives(app: BitApp): PlainObject<IDirectiveCtor>
+    {
+        return {
+            alert: AlertDirective
+        };
+    }
+    
+}
+```
+
+::: tip PRO-TIP
+
+Directives provided by plugins MAY override default directives like `data-bind`, `data-if`,
+however can, themselves be overwritten by the directive configuration on a per-app basis!
+
+:::

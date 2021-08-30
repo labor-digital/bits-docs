@@ -16,7 +16,16 @@
  * Last modified: 2021.08.04 at 16:13
  */
 
-import {AbstractBit, BitApp, IBitNs, IBitPlugin, IBitPluginExtensionInjector} from '@labor-digital/bits';
+import {
+    AbstractBit,
+    BitApp,
+    IBitNs,
+    IBitPlugin,
+    IBitPluginExtensionInjector,
+    IDirectiveCtor
+} from '@labor-digital/bits';
+import {PlainObject} from '@labor-digital/helferlein';
+import {AlertDirective} from './AlertDirective';
 import {PluginBit} from './PluginBit';
 import {PluginService} from './PluginService';
 
@@ -34,7 +43,7 @@ declare module '@labor-digital/bits/dist/Core/Di/DiContainer'
 {
     interface DiContainer
     {
-        readonly pluginService: PluginService
+        readonly pluginService: PluginService;
     }
 }
 
@@ -55,6 +64,13 @@ export class DemoPlugin implements IBitPlugin
             plugin: {
                 demo: PluginBit
             }
+        };
+    }
+    
+    public provideDirectives(app: BitApp): PlainObject<IDirectiveCtor>
+    {
+        return {
+            alert: AlertDirective
         };
     }
     
