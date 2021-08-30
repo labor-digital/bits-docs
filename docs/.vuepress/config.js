@@ -131,8 +131,8 @@ module.exports = {
                     children: [
                         'plugins/WritePlugins',
                         'plugins/Translator',
-                        'plugins/LitHtml',
-                        'plugins/Store'
+                        'plugins/LitHtml'
+                        // 'plugins/Store'
                     ]
                 }
             ]
