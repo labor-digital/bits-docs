@@ -16,10 +16,16 @@
  * Last modified: 2021.03.16 at 16:07
  */
 
-import {AbstractBit, Data} from '@labor-digital/bits';
+import {AbstractBit, Data, Watch} from '@labor-digital/bits';
 
 export class FormBindingBasic extends AbstractBit
 {
     @Data()
     value: any = null;
+    
+    @Watch('value')
+    protected onValueUpdate(n: any, o: any): void
+    {
+        console.log('value updated! Now:', n, 'was:', o);
+    }
 }
