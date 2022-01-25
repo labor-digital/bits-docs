@@ -17,12 +17,12 @@
 	"dependencies": {
 		"copyfiles": "^2.4.1",
 		"rimraf": "^3.0.2",
-		"vuepress": "^1.8.2"
+		"vuepress": "^1.9.7"
 	},
 	"devDependencies": {
-		"typedoc": "^0.22.10",
-		"typedoc-plugin-markdown": "^3.11.8",
-		"typescript": "^4.5.4",
-		"vuepress-plugin-typedoc": "^0.10.0"
+		"typedoc": "^0.22.11",
+		"typedoc-plugin-markdown": "^3.11.12",
+		"typescript": "^4.5.5",
+		"vuepress-plugin-typedoc": "^0.10.2"
 	}
 }
