@@ -79,6 +79,11 @@ using $find() with the "@" prefix.
 
 ```this.$find('@reference')``` will resolve the element with the `data-ref="reference"` attribute on it.
 
+You can also use complex queries in combination with the "@" prefix:
+```this.$find('@reference:not(@other-reference)``` will resolve to: `*[data-ref="reference"]:not(*[data-ref="other-reference"])`
+
+Additionally, you can use the ":@" pseudo-selector like: `this.$find('.class:@selector')` to find `.class[data-ref="selector"]`.
+
 ::: tip
 
 You can use reference selectors everywhere, where you can insert a css query selector.
