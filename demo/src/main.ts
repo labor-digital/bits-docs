@@ -48,6 +48,7 @@ import {StyleAndClasses} from './Bits/Essentials/StyleAndClasses';
 import {DependencyInjection} from './Bits/Misc/DependencyInjection';
 import {Hmr} from './Bits/Misc/Hmr';
 import {NoopBit} from './Bits/Misc/NoopBit';
+import {TwoBitsOneFileA, TwoBitsOneFileB} from './Bits/Misc/TwoBitsOneFile';
 import {LitHtml} from './Bits/Plugins/LitHtml/LitHtml';
 import {LitHtmlAdvanced} from './Bits/Plugins/LitHtml/LitHtmlAdvanced';
 import {LitHtmlBinding} from './Bits/Plugins/LitHtml/LitHtmlBinding';
@@ -146,7 +147,11 @@ new BitApp({
         
         misc: {
             di: DependencyInjection,
-            hmr: Hmr
+            hmr: Hmr,
+            twoBits: {
+                a: TwoBitsOneFileA,
+                b: TwoBitsOneFileB
+            }
         },
         
         util: {
