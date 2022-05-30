@@ -188,3 +188,10 @@ export class Example extends AbstractBit
 Sometimes you want to create your own input elements instead of using the HTML defaults.
 Therefore, bits gives you the option to use `data-model` on the `b-mount` element of child-bits. 
 To learn more about it, take a look at the [bit interaction section](/guide/advanced/BitInteraction.md).
+
+## Accessing values programmatically
+
+In some cases you need to set or get the values of form fields without creating a `data-model` binding on it.
+For that you may use the `$val` utility inside your bit class. Using `await this.$val('@reference')` returns the
+value of the element, while `this.$val('@reference', 'some value')` sets the value of the element.
+This will work on [child-bits](/guide/advanced/BitInteraction.md#model-on-bits) as well!
