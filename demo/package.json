@@ -12,10 +12,10 @@
 	"author": "",
 	"license": "Apache-2.0",
 	"dependencies": {
-		"@labor-digital/bits": "^2.7.0",
+		"@labor-digital/bits": "^2.8.0",
 		"@labor-digital/bits-lit-html": "^1.1.1",
 		"@labor-digital/bits-translator": "^1.1.1",
-		"@labor-digital/helferlein": "^4.4.0",
+		"@labor-digital/helferlein": "^4.4.1",
 		"@webcomponents/template": "^1.5.0",
 		"bootstrap": "^5.1.0",
 		"handlebars": "^4.7.7"
