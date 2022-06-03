@@ -37,6 +37,17 @@
                     </ul>
                 </div>
             </b-mount>
+            
+            <b-mount type="essentials/formBinding/date" class="card bg-light mt-3">
+                <div class="card-body">
+                    <p>This example handles a date field as date object</p>
+                    <button data-ref="reset" class="btn btn-primary" style="margin-bottom: 10px">Reset</button>
+                    <input class="form-control" type="date" data-model="value"/>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item" data-bind="value" style="min-height: 42px"></li>
+                    </ul>
+                </div>
+            </b-mount>
         </div>
     </div>
 </div>

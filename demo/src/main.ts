@@ -38,6 +38,7 @@ import {TemplatesReactive} from './Bits/Advanced/TemplatesReactive';
 import {Conditional} from './Bits/Essentials/Conditional';
 import {FormBinding} from './Bits/Essentials/FormBinding';
 import {FormBindingBasic} from './Bits/Essentials/FormBindingBasic';
+import {FormBindingDate} from './Bits/Essentials/FormBindingDate';
 import {LifecycleChild} from './Bits/Essentials/LifecycleChild';
 import {LifecycleParent} from './Bits/Essentials/LifecycleParent';
 import {Reactivity} from './Bits/Essentials/Reactivity';
@@ -112,7 +113,8 @@ new BitApp({
             formBinding: {
                 // An empty string defines the bit as "essentials/formBinding"
                 '': FormBinding,
-                basic: FormBindingBasic
+                basic: FormBindingBasic,
+                date: FormBindingDate
             },
             
             lifecycle: {

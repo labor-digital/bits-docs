@@ -110,7 +110,27 @@ export class Example extends AbstractBit
 </b-mount>
 ```
 
-<Example href="/demo/examples/essentials-form-binding-type-input-date.html" :height="170"/>
+<Example href="/demo/examples/essentials-form-binding-type-input-date.html" :height="420"/>
+
+::: tip Date 
+
+You can use a `date` object as a property to bind to a "date" input field as well.
+To use a date model, you need to set the `type` option to the `Date` constructor.
+
+```typescript
+import {AbstractBit, Data} from '@labor-digital/bits';
+export class Example extends AbstractBit
+{
+    // With pulling
+    @Data({type: Date})
+    value: Date | null = null;
+    
+    // With initial date
+    @Data({type: Date})
+    value2: Date = new Date();
+}
+```
+:::
 
 ### Input (radio)
 ```html
