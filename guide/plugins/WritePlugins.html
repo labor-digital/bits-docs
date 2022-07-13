@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Write Plugins | Bits - A reactive JS micro framework</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="Only a little bit inspired by vue.js">
+    
+    <link rel="preload" href="/assets/css/styles.styles.4d89bd9c.css" as="style"><link rel="preload" href="/assets/js/app.e331db78.js" as="script"><link rel="preload" href="/assets/js/0.f352c89b.js" as="script"><link rel="preload" href="/assets/js/27.1b8b0c60.js" as="script"><link rel="preload" href="/assets/js/1.a869a7bd.js" as="script"><link rel="prefetch" href="/assets/js/10.8772cc39.js"><link rel="prefetch" href="/assets/js/11.3e4c5fb6.js"><link rel="prefetch" href="/assets/js/12.512c1cca.js"><link rel="prefetch" href="/assets/js/13.c8f0369f.js"><link rel="prefetch" href="/assets/js/14.090e5324.js"><link rel="prefetch" href="/assets/js/15.fd39cef7.js"><link rel="prefetch" href="/assets/js/16.27999350.js"><link rel="prefetch" href="/assets/js/17.3585fe35.js"><link rel="prefetch" href="/assets/js/18.a5a493b8.js"><link rel="prefetch" href="/assets/js/19.a68ef9d2.js"><link rel="prefetch" href="/assets/js/2.8b756a75.js"><link rel="prefetch" href="/assets/js/20.70b6420d.js"><link rel="prefetch" href="/assets/js/21.a4ca4dd9.js"><link rel="prefetch" href="/assets/js/22.4ffd0dfc.js"><link rel="prefetch" href="/assets/js/23.20eea571.js"><link rel="prefetch" href="/assets/js/24.e21fe40c.js"><link rel="prefetch" href="/assets/js/25.9f8224f1.js"><link rel="prefetch" href="/assets/js/26.e98a82b1.js"><link rel="prefetch" href="/assets/js/3.da1af405.js"><link rel="prefetch" href="/assets/js/4.756100b3.js"><link rel="prefetch" href="/assets/js/5.fc2fb5be.js"><link rel="prefetch" href="/assets/js/6.f4b6c13d.js"><link rel="prefetch" href="/assets/js/7.057ed5ca.js"><link rel="prefetch" href="/assets/js/8.93a7f610.js"><link rel="prefetch" href="/assets/js/9.7a93e3ea.js">
+    <link rel="stylesheet" href="/assets/css/styles.styles.4d89bd9c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Bits - A reactive JS micro framework</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="/api/" class="nav-link">
+  API
+</a></div> <a href="https://github.com/labor-digital/bits" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/guide/" class="nav-link router-link-active">
+  Guide
+</a></div><div class="nav-item"><a href="/api/" class="nav-link">
+  API
+</a></div> <a href="https://github.com/labor-digital/bits" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/guide/" aria-current="page" class="sidebar-link">Getting started</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Essentials</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/guide/essentials/Lifecycle.html" class="sidebar-link">Lifecycle</a></li><li><a href="/guide/essentials/Reactivity.html" class="sidebar-link">Reactivity &amp; DOM binding</a></li><li><a href="/guide/essentials/DomAccess.html" class="sidebar-link">Accessing the DOM</a></li><li><a href="/guide/essentials/ClassAndStyle.html" class="sidebar-link">Class and style bindings</a></li><li><a href="/guide/essentials/FormBinding.html" class="sidebar-link">Form binding</a></li><li><a href="/guide/essentials/ConditionalRendering.html" class="sidebar-link">Conditional Rendering</a></li><li><a href="/guide/essentials/EventsAndProxy.html" class="sidebar-link">Events and $proxy</a></li><li><a href="/guide/essentials/DependencyInjection.html" class="sidebar-link">Dependency Injection</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Advanced</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/guide/advanced/AdvancedReactivity.html" class="sidebar-link">Advanced reactivity</a></li><li><a href="/guide/advanced/BitInteraction.html" class="sidebar-link">Bit interaction</a></li><li><a href="/guide/advanced/HtmlAndTemplates.html" class="sidebar-link">HTML and Templates</a></li><li><a href="/guide/advanced/Directives.html" class="sidebar-link">Directives</a></li><li><a href="/guide/advanced/AsyncBits.html" class="sidebar-link">Async Bits</a></li><li><a href="/guide/advanced/Mixins.html" class="sidebar-link">Mixins</a></li><li><a href="/guide/advanced/HotReload.html" class="sidebar-link">Hot Reload</a></li><li><a href="/guide/advanced/CodeTemplate.html" class="sidebar-link">Code template</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Plugins</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/guide/plugins/WritePlugins.html" aria-current="page" class="active sidebar-link">Write Plugins</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#use-plugins" class="sidebar-link">Use plugins</a></li><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#create-a-plugin" class="sidebar-link">Create a plugin</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#initialized" class="sidebar-link">initialized</a></li><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#created" class="sidebar-link">created</a></li><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#mounted" class="sidebar-link">mounted</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#extending-the-bits" class="sidebar-link">Extending the bits</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#typescript-and-autocompletion" class="sidebar-link">Typescript and Autocompletion</a></li></ul></li><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#providing-bits" class="sidebar-link">Providing bits</a></li><li class="sidebar-sub-header"><a href="/guide/plugins/WritePlugins.html#providing-directives" class="sidebar-link">Providing directives</a></li></ul></li><li><a href="/guide/plugins/Translator.html" class="sidebar-link">Translator</a></li><li><a href="/guide/plugins/LitHtml.html" class="sidebar-link">Lit Html</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="write-plugins"><a href="#write-plugins" class="header-anchor">#</a> Write Plugins</h1> <p>While bits comes with a lot of handy features already built in to its core, you can probably imagine
+cases where you want to extend the basic functionality with your own.
+Beginning with version <code>1.10</code> you can create plugins to extend the library to your hearts desire.</p> <h2 id="use-plugins"><a href="#use-plugins" class="header-anchor">#</a> Use plugins</h2> <p>There are some plugins you can install through npm and register them
+in your bits application. There are already some pre-made plugins
+for everyday problems:</p> <ul><li><a href="/guide/plugins/Translator.html">Translator (Multi-Language Bits)</a></li> <li><a href="/guide/plugins/LitHtml.html">lit-html (Complex, reactive templates)</a></li> <li><a href="/guide/plugins/Store.html">Store (App-wide, reactive data store)</a></li></ul> <p>Simply install the plugin through npm and add it to your app configuration, for example:</p> <div class="language- extra-class"><pre class="language-text"><code>npm install @labor-digital/bits-translator
+</code></pre></div><div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>BitApp<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> TranslatorPlugin <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits-translator'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">new</span> <span class="token class-name">BitApp</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">TranslatorPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>A plugin is only active in the application you have registered it for.
+Should you have multiple bit apps, you can have completely different
+plugins and/or configurations.</p></div> <h2 id="create-a-plugin"><a href="#create-a-plugin" class="header-anchor">#</a> Create a plugin</h2> <p>To create a new plugin, start with a new typescript file that will
+contain the main class. In our case we call it <code>DemoPlugin.ts</code> that
+has the following content:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>IBitPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DemoPlugin</span> <span class="token keyword">implements</span> <span class="token class-name">IBitPlugin</span>
+<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><p>That is the basic implementation required to make a plugin, now you have
+to register it in your app in the plugins section of the app config.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>BitApp<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> DemoPlugin <span class="token keyword">from</span> <span class="token string">'./DemoPlugin'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">new</span> <span class="token class-name">BitApp</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+    plugins<span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token keyword">new</span> <span class="token class-name">DemoPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>So, while we created a plugin, we don't have much benefit yet. So let's start to
+extend our plugin class with the hook methods. The plugin has three lifecycle hooks to inject itself into the application.</p> <h3 id="initialized"><a href="#initialized" class="header-anchor">#</a> initialized</h3> <p>Executed right after the plugin instance was initialized. This means,
+the plugin loader noticed the registered plugin instance for the first time.
+This is normally done right before the <a href="/guide/essentials/Lifecycle.html#created-2">&quot;created&quot; lifecycle hook</a></p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>This hook is the best place to register custom services into the service container.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>BitApp<span class="token punctuation">,</span> IBitPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>PluginService<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./PluginService'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DemoPlugin</span> <span class="token keyword">implements</span> <span class="token class-name">IBitPlugin</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">initialized</span><span class="token punctuation">(</span>app<span class="token operator">:</span> BitApp<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// Either as instance that must be available at all times</span>
+        app<span class="token punctuation">.</span>di<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'pluginService'</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">PluginService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Or as factory to be created only when required</span>
+        app<span class="token punctuation">.</span>di<span class="token punctuation">.</span><span class="token function">setFactory</span><span class="token punctuation">(</span><span class="token string">'pluginService'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">new</span> <span class="token class-name">PluginService</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <h3 id="created"><a href="#created" class="header-anchor">#</a> created</h3> <p>Executed when the bits app reaches the <a href="/guide/essentials/Lifecycle.html#created-2">&quot;created&quot; lifecycle hook</a>, before the DOM gets mounted.</p> <h3 id="mounted"><a href="#mounted" class="header-anchor">#</a> mounted</h3> <p>Executed when the bits app reaches the <a href="/guide/essentials/Lifecycle.html#mounted-2">&quot;mounted&quot; lifecycle hook</a>, after the bits have been mounted to the DOM</p> <h2 id="extending-the-bits"><a href="#extending-the-bits" class="header-anchor">#</a> Extending the bits</h2> <p>Your plugin can extend extending bits by injecting methods, or a getters to all
+bit instances of the app, using the <code>extendBits()</code> method. The class extension is not done
+through the prototype, which allows for different extensions in different apps.</p> <p><code>extendBits()</code> receives the <code>inject()</code> function as property to register extensions with.
+If you ever worked with <a href="https://nuxtjs.org/docs/2.x/directory-structure/plugins#inject-in-root--context" target="_blank" rel="noopener noreferrer">nuxt<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> you will probably
+know what's coming next 😉.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>IBitPluginExtensionInjector<span class="token punctuation">,</span>AbstractBit<span class="token punctuation">,</span> IBitPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DemoPlugin</span> <span class="token keyword">implements</span> <span class="token class-name">IBitPlugin</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token function">extendBits</span><span class="token punctuation">(</span>inject<span class="token operator">:</span> IBitPluginExtensionInjector<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// The first parameter defines the name of the method</span>
+        <span class="token comment">// to be added to the bit classes, the second parameter</span>
+        <span class="token comment">// defines the function to be executed when the method is called.</span>
+        <span class="token comment">// As you can see, the methods this always points to the bit it is </span>
+        <span class="token comment">// executed in.</span>
+        
+        <span class="token comment">// We use the plugin service we injected in the &quot;initialized&quot; lifecycle hook</span>
+        <span class="token comment">// example further up on this page.</span>
+        <span class="token function">inject</span><span class="token punctuation">(</span><span class="token string">'changePluginMessage'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">:</span> AbstractBit<span class="token punctuation">,</span> message<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>$di<span class="token punctuation">.</span>pluginService<span class="token punctuation">.</span>message <span class="token operator">=</span> message<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// Instead of a function, you can also provide an object literal containing</span>
+        <span class="token comment">// additional options as second parameter. With this we tell inject, that it </span>
+        <span class="token comment">// should handle our callback like a getter.</span>
+        <span class="token function">inject</span><span class="token punctuation">(</span><span class="token string">'pluginService'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            <span class="token function-variable function">callback</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">:</span> AbstractBit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$di<span class="token punctuation">.</span>pluginService<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            getter<span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>When you use inject, make sure to start your function parameters with <code>(this: AbstractBit)</code>.
+This tells typescript, that the function is actually part of the bit class, and you can access protected properties without issues.</p></div> <p>After you registered the extensions, you can now use them in your bit.
+You can see how it works in the bit we registered from our plugin.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>AbstractBit<span class="token punctuation">,</span> Hot<span class="token punctuation">,</span> Listener<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Hot</span></span><span class="token punctuation">(</span>module<span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">PluginBit</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractBit</span>
+<span class="token punctuation">{</span>
+    <span class="token decorator"><span class="token at operator">@</span><span class="token function">Listener</span></span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">)</span>
+    <span class="token keyword">protected</span> <span class="token function">onClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$changePluginMessage</span><span class="token punctuation">(</span><span class="token string">'I was clicked!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">get</span> <span class="token function">message</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$pluginService<span class="token punctuation">.</span>message<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>The <code>$</code> prefix is a declaration I inherited from vue to prefix everything
+not part of the current bit class. It is automatically prepended to every extension
+registered through <code>inject()</code></p></div> <details class="custom-block details"><summary>Plugin Service</summary> <p>This is the source code of our plugin service, we registered in the &quot;initialized&quot; lifecycle hook example further up on this page.
+Nothing much to talk about, other than the usage of <code>makeObservable()</code> to create a reactive service property.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>makeObservable<span class="token punctuation">,</span> observable<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'mobx'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">PluginService</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> _message<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> <span class="token string">'Hello world! I am a demo plugin :)'</span><span class="token punctuation">;</span>
+    
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">makeObservable</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>_message<span class="token operator">:</span> observable<span class="token punctuation">}</span> <span class="token keyword">as</span> <span class="token builtin">any</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">set</span> <span class="token function">message</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>_message <span class="token operator">=</span> message<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">get</span> <span class="token function">message</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">string</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_message<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <h3 id="typescript-and-autocompletion"><a href="#typescript-and-autocompletion" class="header-anchor">#</a> Typescript and Autocompletion</h3> <p>While technically already working, typescript and your autocompletion will likely complain about
+not knowing our extension being part of the bit class.</p> <div class="language- extra-class"><pre class="language-text"><code>TS2339: Property '$changePluginMessage' does not exist on type 'PluginBit'.
+TS2339: Property '$pluginService' does not exist on type 'PluginBit'.
+</code></pre></div><p>To fix this issue we use module augmentation to tell typescript about our extension.
+At the top of the plugin class we will add the following:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">declare</span> <span class="token keyword">module</span> <span class="token string">'@labor-digital/bits/dist/Core/AbstractBit'</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">interface</span> <span class="token class-name">AbstractBit</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">$changePluginMessage</span><span class="token punctuation">(</span>message<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span><span class="token punctuation">;</span>
+        <span class="token keyword">readonly</span> $pluginService<span class="token operator">:</span> PluginService<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">declare</span> <span class="token keyword">module</span> <span class="token string">'@labor-digital/bits/dist/Core/Di/DiContainer'</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">interface</span> <span class="token class-name">DiContainer</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">readonly</span> pluginService<span class="token operator">:</span> PluginService
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>And there you have it, now typescript compiles the code without an issue.</p> <h2 id="providing-bits"><a href="#providing-bits" class="header-anchor">#</a> Providing bits</h2> <p>Your plugin can provide bit classes to the application, which is really helpful to encapsulate reusable code,
+for sliders, modals and similar elements. The <code>provideBits</code> method in your plugin class allows you
+to return a bit definition you already know from the app options.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>BitApp<span class="token punctuation">,</span> IBitNs<span class="token punctuation">,</span> IBitPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>PluginBit<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./PluginBit'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DemoPlugin</span> <span class="token keyword">implements</span> <span class="token class-name">IBitPlugin</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+    
+    <span class="token keyword">public</span> <span class="token function">provideBits</span><span class="token punctuation">(</span>app<span class="token operator">:</span> BitApp<span class="token punctuation">)</span><span class="token operator">:</span> IBitNs
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            plugin<span class="token operator">:</span> <span class="token punctuation">{</span>
+                demo<span class="token operator">:</span> PluginBit
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+</code></pre></div><p>Now you can add this markup to your page and see how the bit
+provided by the plugin is automatically registered for usage:</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b-mount</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>plugin/demo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">data-bind</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>message<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b-mount</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="preview" data-v-5fb73310><a href="/demo/examples/plugin-example.html" target="_blank" class="preview__link" data-v-5fb73310>Open the example in a new tab</a> <iframe src="/demo/examples/plugin-example.html" style="height:100px;" data-v-5fb73310></iframe></div> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>Like in the app bit definition you can nest the definition using object literals,
+the resulting type will be &quot;plugin/demo&quot;. I would strongly suggest to use a common &quot;namespace&quot;
+for all your provided bits, to avoid naming collisions.</p></div> <div class="custom-block tip"><p class="custom-block-title">PRO-TIP</p> <p>Plugin bits are registered before those of the app, this allows you to
+override plugin bits on a per-app basis.</p></div> <h2 id="providing-directives"><a href="#providing-directives" class="header-anchor">#</a> Providing directives</h2> <p>Similar to providing whole bits, your plugin can bring its own <a href="/guide/advanced/Directives.html">directives</a> and register them in the application.</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>BitApp<span class="token punctuation">,</span> IBitNs<span class="token punctuation">,</span> IBitPlugin<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@labor-digital/bits'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>AlertDirective<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./AlertDirective'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DemoPlugin</span> <span class="token keyword">implements</span> <span class="token class-name">IBitPlugin</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+    
+    <span class="token keyword">public</span> <span class="token function">provideDirectives</span><span class="token punctuation">(</span>app<span class="token operator">:</span> BitApp<span class="token punctuation">)</span><span class="token operator">:</span> PlainObject<span class="token operator">&lt;</span>IDirectiveCtor<span class="token operator">&gt;</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+            alert<span class="token operator">:</span> AlertDirective
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+</code></pre></div><div class="custom-block tip"><p class="custom-block-title">PRO-TIP</p> <p>Directives provided by plugins MAY override default directives like <code>data-bind</code>, <code>data-if</code>,
+however can, themselves be overwritten by the directive configuration on a per-app basis!</p></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/labor-digital/bits-docs/edit/master/docs/guide/plugins/WritePlugins.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/guide/advanced/CodeTemplate.html" class="prev">
+        Code template
+      </a></span> <span class="next"><a href="/guide/plugins/Translator.html">
+        Translator
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e331db78.js" defer></script><script src="/assets/js/0.f352c89b.js" defer></script><script src="/assets/js/27.1b8b0c60.js" defer></script><script src="/assets/js/1.a869a7bd.js" defer></script>
+  </body>
+</html>
