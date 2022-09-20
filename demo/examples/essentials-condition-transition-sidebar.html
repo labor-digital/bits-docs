@@ -1,0 +1,87 @@
+<!--
+  ~ Copyright 2021 LABOR.digital
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  ~ Last modified: 2021.03.03 at 14:35
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <script src="../dist/bundle.js" type="text/javascript"></script>
+    <title>Conditional Rendering (Sidebar/Different Transitions)</title>
+    <style>
+        .sidebar {
+            display: none;
+            position: fixed;
+            padding-top: 40px;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 350px
+        }
+        
+        .sidebar-enter-active {
+            transition: left 0.3s;
+        }
+        
+        .sidebar-enter-from {
+            left: -350px;
+        }
+        
+        /** You can also use specific animations for the leave animation*/
+        .sidebar-leave-active {
+            transition: top 0.4s, bottom 0.2s;
+        }
+        
+        .sidebar-leave-to {
+            top: -300px;
+            bottom: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <b-mount type="essentials/conditional">
+                <div class="row">
+                    <div class="col-6 offset-6">
+                        <div class="card bg-light mt-3">
+                            <button class="btn btn-default" data-ref="button">Click to toggle</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav
+                    data-if="state" data-if-display="flex" data-transition="sidebar"
+                    class="sidebar flex-column flex-shrink-0 p3 text-white bg-dark">
+                    
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item"><a href="#" class="nav-link text-white">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white">Page A</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link text-white">Page B</a></li>
+                    </ul>
+                
+                </nav>
+            </b-mount>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
